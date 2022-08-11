@@ -14,32 +14,45 @@ const finishGameButton = document.getElementById('finish-game-button');
 const teamOneLabel = document.getElementById('team-one-name');
 const teamTwoLabel = document.getElementById('team-two-name');
 
+let currentGame = {
+    name1: '',
+    name2: '',
+    score1: '',
+    score2: ''
+};
+
 let name1 = '';
 let name2 = '';
 let score1 = 0;
 let score2 = 0;
 
+
+
 nameForm.addEventListener('submit', (e) => {
     // don't forget to prevent the default form behavior!
-
+    e.preventDefault();
     // get the name data from the form
-
+    const formData = new FormData(nameForm);
+    const name1 = formData.get('team-one');
+    const name2 = formData.get('team-two');
     // set the state to this data from the form
-
+    currentGame.name1 = name1;
+    currentGame.name2 = name2;
     // reset the form values
-
+    nameForm.reset();
+    console.table(currentGame);
     displayCurrentGameEl();
 });
 
 teamOneAddButton.addEventListener('click', () => {
     // increment the current state for team one's score
-
+    currentGame.score1++;
     displayCurrentGameEl();
 });
 
 teamTwoAddButton.addEventListener('click', () => {
     // increment the current state for team two's score
-
+    currentGame.score++;
     displayCurrentGameEl();
 });
 
@@ -75,10 +88,16 @@ window.addEventListener('', async () => {
 
 function displayCurrentGameEl() {
     // clear out the current game div
+    currentGameEl.textContent = '';
     // change the label to show team one's name;
+    teamOneLabel.textContent = name1.value;
     // change the label to show team two's name;
+    teamTwoLabel.textContent = name2.value;
     // call the render game function to create a game element
+    const game = renderGame();
     // append the element to the cleared out current game div
+    currentGameEl.append(game);
+
 }
 
 function displayAllGames() {
