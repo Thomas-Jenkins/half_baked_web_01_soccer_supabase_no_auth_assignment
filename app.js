@@ -52,19 +52,19 @@ teamOneAddButton.addEventListener('click', () => {
 
 teamTwoAddButton.addEventListener('click', () => {
     // increment the current state for team two's score
-    currentGame.score++;
+    currentGame.score2++;
     displayCurrentGameEl();
 });
 
 teamOneSubtractButton.addEventListener('click', () => {
     // decrement the current state for team one's score
-
+    currentGame.score1--;
     displayCurrentGameEl();
 });
 
 teamTwoSubtractButton.addEventListener('click', () => {
     // decrement the current state for team two's score
-
+    currentGame.score2--;
     displayCurrentGameEl();
 });
 
